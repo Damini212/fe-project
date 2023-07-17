@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -22,13 +22,13 @@ function App() {
       {loading ? (
         "Loading Page..."
       ) : (
-        <div>
+        <main>
           <Navbar />
           <Routes>
             <Route path="/" element={<Articles articles={articles} />}></Route>
             <Route path="/article/:article_id" element={<Article />}></Route>
           </Routes>
-        </div>
+        </main>
       )}
     </div>
   );

@@ -12,7 +12,7 @@ export const Article = () => {
     setLoadingArticle(true);
     getArticlesById(params.article_id).then((data) => {
       setArticle(data.articles);
-      setLoadingArticle(false);
+      setLoadingArticle(true);
     });
   }, [params.article_id]);
 
@@ -21,14 +21,18 @@ export const Article = () => {
   }
 
   return (
-    <div>
+    <article>
       {loadingArticle ? (
         "Article is loading..."
       ) : (
         <div className="article-page">
-          <h4>{article.title}className="article-items"</h4>
+          <h4 className="article-items">{article.title}</h4>
           <div className="article-items">Author - {article.author}</div>
-          <img className="article-image" src={article.article_img_url} />
+          <img
+            className="article-image"
+            src={article.article_img_url}
+            alt={`cover of the ${article.title} book`}
+          />
           <div className="article-items">Topic - {article.topic}</div>
           <div className="article-items">
             Comment Count - {article.comment_count}
@@ -39,6 +43,6 @@ export const Article = () => {
           </div>
         </div>
       )}
-    </div>
+    </article>
   );
 };
