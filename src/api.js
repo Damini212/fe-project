@@ -9,3 +9,9 @@ export const getArticles = () => {
     return data.items;
   });
 };
+
+export const getArticlesById = (article_id) => {
+  return articleList.get(`/api/articles/${article_id}`).then(({ data }) => {
+    return data;
+  });
+};
