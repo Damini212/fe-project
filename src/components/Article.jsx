@@ -29,8 +29,8 @@ export const Article = () => {
         <div className="article-page">
           <div className="article">
             <h4 className="article-items">{article.title}</h4>
-            <author className="article-items">Author - {article.author}</author>
-            <topic className="article-items">Topic - {article.topic}</topic>
+            <div className="article-items">Author - {article.author}</div>
+            <div className="article-items">Topic - {article.topic}</div>
             <img
               className="article-image"
               src={article.article_img_url}
