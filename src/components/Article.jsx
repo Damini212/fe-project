@@ -12,7 +12,7 @@ export const Article = () => {
     setLoadingArticle(true);
     getArticlesById(params.article_id).then((data) => {
       setArticle(data.articles);
-      setLoadingArticle(true);
+      setLoadingArticle(false);
     });
   }, [params.article_id]);
 
