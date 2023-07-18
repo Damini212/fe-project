@@ -10,6 +10,7 @@ body {
   justify-content: center;
   margin: 10px;
   background-color: rgb(184, 221, 218);
+  gap: 50px;
 }
 
 .navbar-btn {
@@ -22,18 +23,54 @@ body {
   gap: 30px;
   padding: 16px;
 }
-.article-ul {
+.articles-link {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   border: 1px solid black;
   padding: 16px;
-  gap: 10px;
   border-radius: 10px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  color: black;
 }
 
+.article-items {
+  padding: 10px;
+}
 img {
   width: 100%;
   height: auto;
+}
+.article-image {
+  width: 50%;
+  height: auto;
+}
+.article-page {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  border: 1px solid black;
+  height: auto;
+  margin-left: 20%;
+  margin-right: 20%;
+  border-radius: 20px;
+}
+.home-btn {
+  background-color: rgb(156, 196, 194);
+  border: 1px solid rgb(169, 211, 207);
+  border-radius: 10px;
+  height: 50px;
+  margin-top: 20px;
+}
+
+.home-btn:hover {
+  background-color: rgb(128, 187, 183);
+}
+.article-btns {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
 }
