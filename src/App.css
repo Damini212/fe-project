@@ -33,10 +33,53 @@
   }
 }
 
+<<<<<<< Updated upstream
 .card {
   padding: 2em;
+=======
+.article-items {
+  padding: 10px;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.article-image {
+  width: 50%;
+  height: auto;
+}
+.article-page {
+  display: flex;
+  margin: 10px;
+}
+
+.article {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+.home-btn {
+  background-color: rgb(156, 196, 194);
+  border: 1px solid rgb(169, 211, 207);
+  border-radius: 10px;
+  height: 50px;
+  margin-top: 20px;
+>>>>>>> Stashed changes
 }
 
 .read-the-docs {
   color: #888;
+}
+.error-message {
+  font-size: 50px;
+  color: rgb(186, 100, 100);
+}
+
+.single-comment {
+  margin: 10px;
+}
+.comments {
+  width: 40%;
 }
