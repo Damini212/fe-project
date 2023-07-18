@@ -28,12 +28,13 @@ export const Article = () => {
         <div className="article-page">
           <h4 className="article-items">{article.title}</h4>
           <div className="article-items">Author - {article.author}</div>
+          <div className="article-items">Topic - {article.topic}</div>
           <img
             className="article-image"
             src={article.article_img_url}
             alt={`cover of the ${article.title} book`}
           />
-          <div className="article-items">Topic - {article.topic}</div>
+          <p>{article.body}</p>
           <div className="article-items">
             Comment Count - {article.comment_count}
           </div>
