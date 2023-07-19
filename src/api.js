@@ -22,3 +22,10 @@ export const getCommentsByArticle = (article_id) => {
       return data;
     });
 };
+export const postVotes = (article_id, votes) => {
+  return articleList
+    .patch(`/api/articles/${article_id}`, votes)
+    .then(({ data }) => {
+      return data;
+    });
+};

@@ -1,25 +1,38 @@
-
 import React, { useEffect, useState } from "react";
-import { getArticles, getArticlesById } from "../api";
-import axios from "axios";
+import { getArticlesById, postVotes } from "../api";
 import { useParams } from "react-router-dom";
+import { ThumbsUp, ThumbsDown } from "react-feather";
 import { Comments } from "./Comments";
+import { Error } from "./Error";
 
-export const Article = () => {
+export const Article = ({ setError, error }) => {
   const params = useParams();
   const [article, setArticle] = useState(null);
-  const [loadingArticle, setLoadingArticle] = useState(false);
+  const [loadingArticle, setLoadingArticle] = useState(true);
 
   useEffect(() => {
     setLoadingArticle(true);
-    getArticlesById(params.article_id).then((data) => {
-      setArticle(data.articles);
-      setLoadingArticle(false);
-    });
+    getArticlesById(params.article_id)
+      .then((data) => {
+        setArticle(data.articles);
+        setLoadingArticle(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   }, []);
 
-  if (!article) {
-    return null;
+  function postVotesToArticle(votes) {
+    postVotes(params.article_id, { inc_votes: votes })
+      .then((data) => {
+        setArticle({ ...article, ...data.updatedArticle });
+      })
+      .catch(() => {
+        setError("something went wrong, please try again");
+      });
+  }
+  if (error) {
+    return <Error message={error} />;
   }
 
   return (
@@ -42,8 +55,16 @@ export const Article = () => {
               Comment Count - {article.comment_count}
             </div>
             <div className="article-btns">
-              <button>Votes - {article.votes}</button>
-              <button>Comment</button>
+              <button onClick={() => postVotesToArticle(1)}>
+                <ThumbsUp />
+              </button>
+              <p>{article.votes}</p>
+              <button
+                onClick={() => postVotesToArticle(-1)}
+                disabled={article.votes === 0}
+              >
+                <ThumbsDown />
+              </button>
             </div>
           </div>
           <div className="comments">
