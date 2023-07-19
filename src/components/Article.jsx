@@ -15,7 +15,7 @@ export const Article = () => {
       setArticle(data.articles);
       setLoadingArticle(false);
     });
-  }, [params.article_id]);
+  }, []);
 
   if (!article) {
     return null;
@@ -29,8 +29,8 @@ export const Article = () => {
         <div className="article-page">
           <div className="article">
             <h4 className="article-items">{article.title}</h4>
-            <div className="article-items">Author - {article.author}</div>
-            <div className="article-items">Topic - {article.topic}</div>
+            <p className="article-items">Author - {article.author}</p>
+            <p className="article-items">Topic - {article.topic}</p>
             <img
               className="article-image"
               src={article.article_img_url}

@@ -6,6 +6,7 @@ export const Comments = () => {
   const params = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
+  console.log(comments);
 
   useEffect(() => {
     setLoadingComments(true);
@@ -13,10 +14,10 @@ export const Comments = () => {
       setComments(data.comments);
       setLoadingComments(false);
     });
-  }, [params.article_id]);
+  }, []);
 
   if (!comments) {
-    return null;
+    return "There are no comments for this article, add a comment";
   }
 
   return (
@@ -29,8 +30,8 @@ export const Comments = () => {
           {comments.map((comment) => {
             return (
               <div key={comment.comment_id} className="single-comment">
-                <div className="comment-author">User - {comment.author}</div>
-                <div className="comment-body">comment - {comment.body}</div>
+                <p className="comment-author">User - {comment.author}</p>
+                <p className="comment-body">comment - {comment.body}</p>
               </div>
             );
           })}
