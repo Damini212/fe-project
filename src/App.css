@@ -49,14 +49,15 @@ img {
 }
 .article-page {
   display: flex;
+  margin: 10px;
+}
+
+.article {
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  justify-self: center;
   align-items: center;
-  border: 1px solid black;
-  height: auto;
-  margin-left: 20%;
-  margin-right: 20%;
-  border-radius: 20px;
+  margin-top: 10px;
 }
 .home-btn {
   background-color: rgb(156, 196, 194);
@@ -73,4 +74,15 @@ img {
   display: flex;
   gap: 10px;
   margin: 10px;
+}
+.error-message {
+  font-size: 50px;
+  color: rgb(186, 100, 100);
+}
+
+.single-comment {
+  margin: 10px;
+}
+.comments {
+  width: 40%;
 }

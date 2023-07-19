@@ -6,6 +6,7 @@ import { Articles } from "./components/articles";
 import { Article } from "./components/Article";
 import { Route, Routes } from "react-router-dom";
 
+
 function App() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,6 +18,8 @@ function App() {
       setLoading(false);
     });
   }, []);
+
+
   return (
     <div>
       {loading ? (
@@ -32,6 +35,9 @@ function App() {
       )}
     </div>
   );
+  
+
 }
 
 export default App;
+
