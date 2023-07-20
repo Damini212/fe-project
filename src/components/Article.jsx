@@ -1,25 +1,38 @@
-
 import React, { useEffect, useState } from "react";
-import { getArticles, getArticlesById } from "../api";
-import axios from "axios";
+import { getArticlesById, postVotes } from "../api";
 import { useParams } from "react-router-dom";
+import { ThumbsUp, ThumbsDown } from "react-feather";
 import { Comments } from "./Comments";
 
-export const Article = () => {
+export const Article = ({ setError, error }) => {
   const params = useParams();
   const [article, setArticle] = useState(null);
-  const [loadingArticle, setLoadingArticle] = useState(false);
+  const [loadingArticle, setLoadingArticle] = useState(true);
+  const [updateVotes, setUpdateVotes] = useState(0);
 
   useEffect(() => {
     setLoadingArticle(true);
-    getArticlesById(params.article_id).then((data) => {
-      setArticle(data.articles);
-      setLoadingArticle(false);
-    });
+    getArticlesById(params.article_id)
+      .then((data) => {
+        setArticle(data.articles);
+        setLoadingArticle(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   }, []);
 
-  if (!article) {
-    return null;
+  function postVotesToArticle(votes) {
+    setUpdateVotes((currentVotes) => currentVotes + 1);
+    setError(null);
+    postVotes(params.article_id, { inc_votes: votes })
+      .then((data) => {
+        setArticle({ ...article, ...data.updatedArticle });
+      })
+      .catch((err) => {
+        setUpdateVotes((currentVotes) => currentVotes - 1);
+        setError("something went wrong, please try again");
+      });
   }
 
   return (
@@ -42,8 +55,17 @@ export const Article = () => {
               Comment Count - {article.comment_count}
             </div>
             <div className="article-btns">
-              <button>Votes - {article.votes}</button>
-              <button>Comment</button>
+              <button onClick={() => postVotesToArticle(1)}>
+                <ThumbsUp />
+              </button>
+              <p>{article.votes}</p>
+              <button
+                onClick={() => postVotesToArticle(-1)}
+                disabled={article.votes === 0}
+              >
+                <ThumbsDown />
+              </button>
+              {error ? <p>{"something went wrong, please try again"}</p> : null}
             </div>
           </div>
           <div className="comments">

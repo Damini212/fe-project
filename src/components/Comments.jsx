@@ -6,7 +6,6 @@ export const Comments = () => {
   const params = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
-  console.log(comments);
 
   useEffect(() => {
     setLoadingComments(true);
