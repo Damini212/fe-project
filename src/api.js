@@ -29,3 +29,10 @@ export const postVotes = (article_id, votes) => {
       return data;
     });
 };
+export const postComments = (username, body, article_id) => {
+  return articleList
+    .post(`/api/articles/${article_id}/comments`, { username, body })
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
