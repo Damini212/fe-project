@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Navbar } from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import axios from "axios";
-import { Articles } from "./components/articles";
-import { Article } from "./components/Article";
+import Articles from "./components/articles";
+import Article from "./components/Article";
 import { Route, Routes } from "react-router-dom";
-import { Error } from "./components/Error";
+import Error from "./components/Error";
 
 export default function App() {
   const [articles, setArticles] = useState([]);

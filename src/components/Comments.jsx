@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCommentsByArticle } from "../api";
 import { useParams } from "react-router-dom";
+import { Addcomment } from "./Addcomment";
 
 export default function Comments() {
   const params = useParams();
@@ -20,17 +21,22 @@ export default function Comments() {
   }
 
   return (
-    <div>
+    <div className="comments">
       {loadingComments ? (
         <p>Comments are loading ...</p>
       ) : (
         <article>
+          <Addcomment
+            comments={comments}
+            setComments={setComments}
+            article_id={params.article_id}
+          />
           <h2>Comments</h2>
           {comments.map((comment) => {
             return (
               <div key={comment.comment_id} className="single-comment">
-                <p className="comment-author">User - {comment.author}</p>
-                <p className="comment-body">comment - {comment.body}</p>
+                <p>User - {comment.author}</p>
+                <p>comment - {comment.body}</p>
               </div>
             );
           })}
