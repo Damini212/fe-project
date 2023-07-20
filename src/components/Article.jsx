@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getArticlesById, postVotes } from "../api";
 import { useParams } from "react-router-dom";
 import { ThumbsUp, ThumbsDown } from "react-feather";
-import { Comments } from "./Comments";
+import Comments from "./Comments";
 
-export const Article = ({ setError, error }) => {
+export default function Article({ setError, error }) {
   const params = useParams();
   const [article, setArticle] = useState(null);
   const [loadingArticle, setLoadingArticle] = useState(true);
@@ -75,4 +75,4 @@ export const Article = ({ setError, error }) => {
       )}
     </article>
   );
-};
+}

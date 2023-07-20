@@ -7,7 +7,7 @@ import { Article } from "./components/Article";
 import { Route, Routes } from "react-router-dom";
 import { Error } from "./components/Error";
 
-function App() {
+export default function App() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -45,5 +45,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getCommentsByArticle } from "../api";
 import { useParams } from "react-router-dom";
 
-export const Comments = () => {
+export default function Comments() {
   const params = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
@@ -38,4 +38,4 @@ export const Comments = () => {
       )}
     </div>
   );
-};
+}

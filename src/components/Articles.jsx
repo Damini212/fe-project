@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Articles = ({ articles }) => {
+export default function Articles({ articles }) {
   return (
     <div className="articles">
       {articles.map((article) => {
@@ -34,4 +34,4 @@ export const Articles = ({ articles }) => {
       })}
     </div>
   );
-};
+}
