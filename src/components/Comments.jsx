@@ -3,7 +3,7 @@ import { getCommentsByArticle } from "../api";
 import { useParams } from "react-router-dom";
 import { Addcomment } from "./Addcomment";
 
-export default function Comments() {
+export default function Comments({ error, setError }) {
   const params = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
@@ -30,6 +30,8 @@ export default function Comments() {
             comments={comments}
             setComments={setComments}
             article_id={params.article_id}
+            setError={setError}
+            error={error}
           />
           <h2>Comments</h2>
           {comments.map((comment) => {

@@ -9,6 +9,7 @@ export default function Article({ setError, error }) {
   const [article, setArticle] = useState(null);
   const [loadingArticle, setLoadingArticle] = useState(true);
   const [updateVotes, setUpdateVotes] = useState(0);
+  const [voteError, setVoteError] = useState(null);
 
   useEffect(() => {
     setLoadingArticle(true);
@@ -31,7 +32,7 @@ export default function Article({ setError, error }) {
       })
       .catch((err) => {
         setUpdateVotes((currentVotes) => currentVotes - 1);
-        setError("something went wrong, please try again");
+        setVoteError("something went wrong, please try again");
       });
   }
 
@@ -65,11 +66,13 @@ export default function Article({ setError, error }) {
               >
                 <ThumbsDown />
               </button>
-              {error ? <p>{"something went wrong, please try again"}</p> : null}
+              {voteError ? (
+                <p>{"something went wrong, please try again"}</p>
+              ) : null}
             </div>
           </div>
           <div className="comments">
-            <Comments />
+            <Comments setError={setError} error={error} />
           </div>
         </div>
       )}

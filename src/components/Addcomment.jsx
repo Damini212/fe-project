@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { postComments } from "../api";
 
-export const Addcomment = ({ setComments, comments, article_id }) => {
+export const Addcomment = ({
+  setComments,
+  comments,
+  article_id,
+  error,
+  setError,
+}) => {
   const [addComment, setAddComment] = useState({
-    username: "",
     comment: "",
   });
 
@@ -13,18 +18,18 @@ export const Addcomment = ({ setComments, comments, article_id }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (addComment.username.length < 1) {
-      alert("username is required");
-    } else if (addComment.comment.length < 1) {
+    if (addComment.comment.length < 1) {
       alert("comment is required");
     } else {
-      postComments(addComment.username, addComment.comment, article_id).then(
-        (postedComments) => {
+      postComments("tickle122", addComment.comment, article_id)
+        .then((postedComments) => {
           setComments([postedComments, ...comments]);
-        }
-      );
+          setError(null);
+        })
+        .catch((err) => {
+          setError(err.message);
+        });
       setAddComment({
-        username: "",
         comment: "",
       });
     }
@@ -32,15 +37,6 @@ export const Addcomment = ({ setComments, comments, article_id }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <lable htmlFor="username">Username : </lable>
-      <input
-        id="username"
-        type="text"
-        name={"username"}
-        value={addComment.username}
-        onChange={handleChange}
-      />
-      <br></br>
       <lable htmlFor="comment">Comment : </lable>
       <br></br>
       <textarea
@@ -52,6 +48,7 @@ export const Addcomment = ({ setComments, comments, article_id }) => {
       />
       <br></br>
       <button type="submit">Submit</button>
+      <p>{error}</p>
     </form>
   );
 };
