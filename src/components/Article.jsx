@@ -23,11 +23,11 @@ export const Article = ({ setError, error }) => {
   }, []);
 
   function postVotesToArticle(votes) {
+    setUpdateVotes((currentVotes) => currentVotes + 1);
+    setError(null);
     postVotes(params.article_id, { inc_votes: votes })
       .then((data) => {
         setArticle({ ...article, ...data.updatedArticle });
-        setUpdateVotes((currentVotes) => currentVotes + 1);
-        setError(null);
       })
       .catch((err) => {
         setUpdateVotes((currentVotes) => currentVotes - 1);
