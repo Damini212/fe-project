@@ -37,7 +37,9 @@ body {
 }
 
 .article-items {
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 img {
   width: 100%;
@@ -48,10 +50,8 @@ img {
   height: auto;
 }
 .article-page {
-  margin: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 10px;
 }
 
 .article {
@@ -83,12 +83,23 @@ img {
 }
 
 .single-comment {
-  display: flex;
-  flex-direction: column;
+  margin: 10px;
+}
+.comments {
+  width: 40%;
+}
+.topics-btn {
+  margin: 10px;
+  background-color: rgb(156, 196, 194);
+  border: 1px solid rgb(169, 211, 207);
+  border-radius: 10px;
+  height: 50px;
+  margin-top: 20px;
+}
+.topic {
+  margin: 10px;
 }
 
-.comments {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.selected-topic {
+  background-color: rgb(89, 198, 212);
 }

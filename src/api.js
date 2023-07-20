@@ -36,3 +36,8 @@ export const postComments = (username, body, article_id) => {
       return data.comment;
     });
 };
+export const getTopics = () => {
+  return articleList.get("/api/topics").then(({ data }) => {
+    return data;
+  });
+};
