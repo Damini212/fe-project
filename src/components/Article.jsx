@@ -3,12 +3,12 @@ import { getArticlesById, postVotes } from "../api";
 import { useParams } from "react-router-dom";
 import { ThumbsUp, ThumbsDown } from "react-feather";
 import { Comments } from "./Comments";
-import { Error } from "./Error";
 
 export const Article = ({ setError, error }) => {
   const params = useParams();
   const [article, setArticle] = useState(null);
   const [loadingArticle, setLoadingArticle] = useState(true);
+  const [updateVotes, setUpdateVotes] = useState(0);
 
   useEffect(() => {
     setLoadingArticle(true);
@@ -26,13 +26,13 @@ export const Article = ({ setError, error }) => {
     postVotes(params.article_id, { inc_votes: votes })
       .then((data) => {
         setArticle({ ...article, ...data.updatedArticle });
+        setUpdateVotes((currentVotes) => currentVotes + 1);
+        setError(null);
       })
-      .catch(() => {
+      .catch((err) => {
+        setUpdateVotes((currentVotes) => currentVotes - 1);
         setError("something went wrong, please try again");
       });
-  }
-  if (error) {
-    return <Error message={error} />;
   }
 
   return (
@@ -65,6 +65,7 @@ export const Article = ({ setError, error }) => {
               >
                 <ThumbsDown />
               </button>
+              {error ? <p>{"something went wrong, please try again"}</p> : null}
             </div>
           </div>
           <div className="comments">
