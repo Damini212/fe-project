@@ -1,8 +1,30 @@
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { getArticles, getTopics } from "../api";
 
-export default function Articles({ articles, topics }) {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+export default function Articles() {
+  const [articles, setArticles] = useState([]);
+  const [topics, setTopics] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    setLoading(true);
+    getArticles(searchParams)
+      .then((articles) => {
+        setArticles(articles);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  }, [searchParams]);
+
+  useEffect(() => {
+    getTopics().then((topics) => {
+      setTopics(topics);
+    });
+  }, []);
 
   return (
     <div>
@@ -17,25 +39,45 @@ export default function Articles({ articles, topics }) {
             }
             key={topic.slug}
             onClick={() => {
-              searchParams.set("topic", topic.slug);
-              navigate({ search: searchParams.toString() });
+              const newSearchParams = new URLSearchParams(searchParams);
+              newSearchParams.set("topic", topic.slug);
+              setSearchParams(newSearchParams);
             }}
           >
             {topic.slug}
           </button>
         );
       })}
-      <div className="articles">
-        {articles
-          .filter((article) => {
-            const topic = searchParams.get("topic");
-            if (topic) {
-              return article.topic === topic;
-            } else {
-              return true;
-            }
-          })
-          .map((article) => {
+      <div className="sort_by">
+        <select
+          value={searchParams.get("sort_by") ?? "created_at"}
+          onChange={(event) => {
+            const newSearchParams = new URLSearchParams(searchParams);
+            newSearchParams.set("sort_by", event.target.value);
+            setSearchParams(newSearchParams);
+          }}
+        >
+          <option value={"created_at"}>Date</option>
+          <option value={"votes"}>Votes</option>
+        </select>
+        <select
+          value={searchParams.get("order") ?? "asc"}
+          onChange={(event) => {
+            const newSearchParams = new URLSearchParams(searchParams);
+            newSearchParams.set("order", event.target.value);
+            setSearchParams(newSearchParams);
+          }}
+        >
+          <option value={"asc"}>Ascending</option>
+          <option value={"desc"}>Descending</option>
+        </select>
+      </div>
+
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="articles">
+          {articles.map((article) => {
             return (
               <Link
                 to={`/article/${article.article_id}`}
@@ -53,12 +95,14 @@ export default function Articles({ articles, topics }) {
                   <div className="article-items">
                     Comment Count - {article.comment_count}
                   </div>
+                  <p>{new Date(article.created_at).toDateString()}</p>
                   <div className="article-items">Votes - {article.votes}</div>
                 </div>
               </Link>
             );
           })}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

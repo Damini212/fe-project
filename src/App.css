@@ -50,7 +50,6 @@ img {
   height: auto;
 }
 .article-page {
-  display: flex;
   margin: 10px;
 }
 
@@ -85,9 +84,7 @@ img {
 .single-comment {
   margin: 10px;
 }
-.comments {
-  width: 40%;
-}
+
 .topics-btn {
   margin: 10px;
   background-color: rgb(156, 196, 194);
@@ -99,7 +96,11 @@ img {
 .topic {
   margin: 10px;
 }
-
 .selected-topic {
-  background-color: rgb(89, 198, 212);
+  background-color: rgb(131, 205, 214);
+}
+.sort_by {
+  margin: 10px;
+  display: flex;
+  gap: 10px;
 }
