@@ -37,7 +37,7 @@ export const Addcomment = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <lable htmlFor="comment">Comment : </lable>
+      <label htmlFor="comment">Comment : </label>
       <br></br>
       <textarea
         id="comment"

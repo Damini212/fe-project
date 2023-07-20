@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import axios from "axios";
-import Articles from "./components/articles";
+import Articles from "./components/Articles";
 import Article from "./components/Article";
 import { Route, Routes } from "react-router-dom";
 import Error from "./components/Error";
+import { getTopics } from "./api";
 
 export default function App() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [topics, setTopics] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -25,6 +27,12 @@ export default function App() {
       });
   }, []);
 
+  useEffect(() => {
+    getTopics().then((data) => {
+      setTopics(data.topics);
+    });
+  }, []);
+
   return (
     <div>
       {loading ? (
@@ -33,7 +41,10 @@ export default function App() {
         <main>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Articles articles={articles} />}></Route>
+            <Route
+              path="/"
+              element={<Articles articles={articles} topics={topics} />}
+            ></Route>
             <Route
               path="/article/:article_id"
               element={<Article setError={setError} error={error} />}
