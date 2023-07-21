@@ -36,7 +36,7 @@ export const Addcomment = ({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="comment-form">
       <label htmlFor="comment">Comment : </label>
       <br></br>
       <textarea
@@ -45,9 +45,12 @@ export const Addcomment = ({
         name={"comment"}
         value={addComment.comment}
         onChange={handleChange}
+        className="text-area"
       />
       <br></br>
-      <button type="submit">Submit</button>
+      <button type="submit" className="submit-btn">
+        Submit
+      </button>
       <p>{error}</p>
     </form>
   );

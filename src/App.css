@@ -140,3 +140,34 @@ img {
   overflow: hidden;
   height: 25px;
 }
+.delete-btn {
+  background-color: #d79e54;
+  border: 1px solid #d79e54;
+  border-radius: 10px;
+  color: rgb(84, 18, 18);
+  padding: 5px;
+}
+.submit-btn {
+  background-color: #d79e54;
+  border: 1px solid #d79e54;
+  border-radius: 10px;
+  color: rgb(84, 18, 18);
+  padding: 5px;
+}
+.vote-btn {
+  background-color: #d79e54;
+  border: 1px solid #d79e54;
+  border-radius: 10px;
+  color: rgb(84, 18, 18);
+  padding: 5px;
+}
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.text-area {
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
+}

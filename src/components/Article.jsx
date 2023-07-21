@@ -62,11 +62,15 @@ export default function Article() {
               Comment Count - {article.comment_count}
             </div>
             <div className="article-btns">
-              <button onClick={() => postVotesToArticle(1)}>
+              <button
+                className="vote-btn"
+                onClick={() => postVotesToArticle(1)}
+              >
                 <ThumbsUp />
               </button>
               <p>{article.votes}</p>
               <button
+                className="vote-btn"
                 onClick={() => postVotesToArticle(-1)}
                 disabled={article.votes === 0}
               >

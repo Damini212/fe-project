@@ -64,12 +64,13 @@ export default function Comments({ error, setError }) {
                 <p>comment - {comment.body}</p>
                 {comment.author === "jessjelly" ? (
                   <button
+                    className="delete-btn"
                     onClick={() => {
                       deleteComment(comment.comment_id);
                     }}
                     disabled={!showDeleteComment}
                   >
-                    Delete
+                    delete
                   </button>
                 ) : null}
               </div>
