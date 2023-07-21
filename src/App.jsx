@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 
-import Articles from "./components/articles";
+import Articles from "./components/Articles";
 import Article from "./components/Article";
 import { Route, Routes } from "react-router-dom";
 import Error from "./components/Error";
