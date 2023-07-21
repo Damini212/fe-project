@@ -8,6 +8,7 @@ export default function Comments({ error, setError }) {
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
   const [showDeleteComment, setShowDeleteComment] = useState(true);
+  const [deleteCommentError, setDeleteCommentError] = useState(false);
 
   useEffect(() => {
     setLoadingComments(true);
@@ -23,14 +24,20 @@ export default function Comments({ error, setError }) {
 
   function deleteComment(comment_id) {
     setShowDeleteComment(false);
-    deleteComments(comment_id).then(() => {
-      setComments(
-        comments.filter((comment) => {
-          return comment.comment_id !== comment_id;
-        })
-      );
-      setShowDeleteComment(true);
-    });
+    deleteComments(comment_id)
+      .then(() => {
+        setComments(
+          comments.filter((comment) => {
+            return comment.comment_id !== comment_id;
+          })
+        );
+        setShowDeleteComment(true);
+        setDeleteCommentError(false);
+      })
+      .catch((err) => {
+        setDeleteCommentError(true);
+        setShowDeleteComment(true);
+      });
   }
 
   return (
@@ -46,6 +53,9 @@ export default function Comments({ error, setError }) {
             setError={setError}
             error={error}
           />
+          {deleteCommentError ? (
+            <p>Something went wrong, please try again</p>
+          ) : null}
           <h2>Comments</h2>
           {comments.map((comment) => {
             return (
