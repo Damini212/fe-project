@@ -21,7 +21,7 @@ export const Addcomment = ({
     if (addComment.comment.trim().length < 1) {
       alert("comment is required");
     } else {
-      postComments("tickle122", addComment.comment, article_id)
+      postComments("jessjelly", addComment.comment, article_id)
         .then((postedComments) => {
           setComments([postedComments, ...comments]);
           setError(null);

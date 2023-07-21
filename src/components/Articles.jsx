@@ -60,6 +60,7 @@ export default function Articles() {
         >
           <option value={"created_at"}>Date</option>
           <option value={"votes"}>Votes</option>
+          <option value={"comment_count"}>Comment Count</option>
         </select>
         <select
           className="topic-dropdown"
