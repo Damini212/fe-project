@@ -18,7 +18,7 @@ export const Addcomment = ({
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (addComment.comment.length < 1) {
+    if (addComment.comment.trim().length < 1) {
       alert("comment is required");
     } else {
       postComments("tickle122", addComment.comment, article_id)
