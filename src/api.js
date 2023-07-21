@@ -55,3 +55,8 @@ export const getTopics = () => {
     return data.topics;
   });
 };
+export const deleteComments = (comment_id) => {
+  return articleList.delete(`/api/comments/${comment_id}`).then(({ data }) => {
+    return data;
+  });
+};

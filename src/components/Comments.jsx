@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCommentsByArticle } from "../api";
+import { deleteComments, getCommentsByArticle } from "../api";
 import { useParams } from "react-router-dom";
 import { Addcomment } from "./Addcomment";
 
@@ -7,6 +7,7 @@ export default function Comments({ error, setError }) {
   const params = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
+  const [showDeleteComment, setShowDeleteComment] = useState(false);
 
   useEffect(() => {
     setLoadingComments(true);
@@ -18,6 +19,18 @@ export default function Comments({ error, setError }) {
 
   if (!comments) {
     return "There are no comments for this article, add a comment";
+  }
+
+  function deleteComment(comment_id) {
+    setShowDeleteComment(false);
+    deleteComments(comment_id).then(() => {
+      setComments(
+        comments.filter((comment) => {
+          return comment.comment_id !== comment_id;
+        })
+      );
+      setShowDeleteComment(true);
+    });
   }
 
   return (
@@ -39,6 +52,16 @@ export default function Comments({ error, setError }) {
               <div key={comment.comment_id} className="single-comment">
                 <p>User - {comment.author}</p>
                 <p>comment - {comment.body}</p>
+                {comment.author === "jessjelly" ? (
+                  <button
+                    onClick={() => {
+                      deleteComment(comment.comment_id);
+                    }}
+                    disabled={!showDeleteComment}
+                  >
+                    Delete
+                  </button>
+                ) : null}
               </div>
             );
           })}
