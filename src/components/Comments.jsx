@@ -7,7 +7,7 @@ export default function Comments({ error, setError }) {
   const params = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
-  const [showDeleteComment, setShowDeleteComment] = useState(false);
+  const [showDeleteComment, setShowDeleteComment] = useState(true);
 
   useEffect(() => {
     setLoadingComments(true);
