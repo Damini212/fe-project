@@ -28,7 +28,7 @@ export default function Articles() {
 
   return (
     <div>
-      <p className="topic">Select A Topic From Below</p>
+      <h3 className="topic">Select A Topic From Below</h3>
       {topics.map((topic) => {
         return (
           <button
@@ -50,6 +50,7 @@ export default function Articles() {
       })}
       <div className="sort_by">
         <select
+          className="topic-dropdown"
           value={searchParams.get("sort_by") ?? "created_at"}
           onChange={(event) => {
             const newSearchParams = new URLSearchParams(searchParams);
@@ -61,6 +62,7 @@ export default function Articles() {
           <option value={"votes"}>Votes</option>
         </select>
         <select
+          className="topic-dropdown"
           value={searchParams.get("order") ?? "asc"}
           onChange={(event) => {
             const newSearchParams = new URLSearchParams(searchParams);

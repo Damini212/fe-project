@@ -1,0 +1,19 @@
+Welcome to the blog app.
+
+Introduction to the app
+This blog app shows a collection of articles which can be selected based on topics or can be sorted based on date, votes, comment count 
+in ascending or descending order. You can choose a single article to read, add comments and votes to the article. 
+If an incorrect path is choosen, or a non-existent topic is requested, error handling is in place to inform the user of the error.
+
+
+Links 
+Here is the link to the frontend repository - 
+Here is the link to the backend repository - https://nc-news-bp.onrender.com
+
+
+Instructions to run this project locally
+1. Node version of atleast v18.16.0 is required. 
+2. Clone the repository by git clone <repo-url>
+3. install npm and start the app using npm run dev
+
+
