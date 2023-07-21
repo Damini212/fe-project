@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(219, 234, 233);
+  background-color: #d3c4b0;
 }
 
 .navbar {
@@ -9,7 +9,7 @@ body {
   flex-direction: row;
   justify-content: center;
   margin: 10px;
-  background-color: rgb(184, 221, 218);
+  background-color: #d3ba9a;
   gap: 50px;
 }
 
@@ -23,17 +23,25 @@ body {
   gap: 30px;
   padding: 16px;
 }
+
 .articles-link {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid #ea8a0b;
   padding: 16px;
   border-radius: 10px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   text-decoration: none;
   color: black;
+}
+
+.articles-link:hover {
+  background-color: #e5a95a;
+  transition-duration: 300ms;
+  transition-timing-function: ease-out;
+  transform: scale(1.02);
 }
 
 .article-items {
@@ -54,22 +62,21 @@ img {
 }
 
 .article {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
 }
 .home-btn {
-  background-color: rgb(156, 196, 194);
-  border: 1px solid rgb(169, 211, 207);
+  background-color: #d79e54;
+  border: 1px solid #d79e54;
   border-radius: 10px;
   height: 50px;
   margin-top: 20px;
 }
 
 .home-btn:hover {
-  background-color: rgb(128, 187, 183);
+  background-color: #ea8a0b;
 }
 .article-btns {
   display: flex;
@@ -88,8 +95,8 @@ img {
 
 .topics-btn {
   margin: 10px;
-  background-color: rgb(156, 196, 194);
-  border: 1px solid rgb(169, 211, 207);
+  background-color: #d79e54;
+  border: 1px solid #d79e54;
   border-radius: 10px;
   height: 50px;
   margin-top: 20px;
@@ -97,11 +104,28 @@ img {
 .topic {
   margin: 10px;
 }
+.topics-btn:hover {
+  background-color: #ea8a0b;
+}
 .selected-topic {
-  background-color: rgb(131, 205, 214);
+  background-color: #ea8a0b;
 }
 .sort_by {
   margin: 10px;
   display: flex;
   gap: 10px;
+}
+.comments {
+  display: flex;
+  flex-direction: column;
+  flex-direction: center;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ea8a0b;
+  width: 50%;
+  margin-left: 25%;
+  padding: 10px;
+}
+.article-body {
+  width: 50%;
 }

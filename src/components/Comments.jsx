@@ -22,7 +22,7 @@ export default function Comments({ error, setError }) {
   }
 
   return (
-    <div className="comments">
+    <div>
       {loadingComments ? (
         <p>Comments are loading ...</p>
       ) : (

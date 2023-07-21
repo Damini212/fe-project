@@ -57,7 +57,7 @@ export default function Article() {
               src={article.article_img_url}
               alt={`cover of the ${article.title} book`}
             />
-            <p>{article.body}</p>
+            <p className="article-body">{article.body}</p>
             <div className="article-items">
               Comment Count - {article.comment_count}
             </div>
