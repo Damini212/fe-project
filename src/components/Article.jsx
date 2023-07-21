@@ -3,13 +3,15 @@ import { getArticlesById, postVotes } from "../api";
 import { useParams } from "react-router-dom";
 import { ThumbsUp, ThumbsDown } from "react-feather";
 import Comments from "./Comments";
+import Error from "./Error";
 
-export default function Article({ setError, error }) {
+export default function Article() {
   const params = useParams();
   const [article, setArticle] = useState(null);
   const [loadingArticle, setLoadingArticle] = useState(true);
   const [updateVotes, setUpdateVotes] = useState(0);
   const [voteError, setVoteError] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoadingArticle(true);
@@ -34,6 +36,10 @@ export default function Article({ setError, error }) {
         setUpdateVotes((currentVotes) => currentVotes - 1);
         setVoteError("something went wrong, please try again");
       });
+  }
+
+  if (error) {
+    return <Error message={error} />;
   }
 
   return (

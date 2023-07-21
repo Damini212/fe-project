@@ -7,6 +7,7 @@ export default function Comments({ error, setError }) {
   const params = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
+  const [showDeleteComment, setShowDeleteComment] = useState(true);
 
   useEffect(() => {
     setLoadingComments(true);
@@ -17,7 +18,7 @@ export default function Comments({ error, setError }) {
   }, []);
 
   if (!comments) {
-    return "There are no comments for this article, add a comment";
+    return <h4>There are no comments for this article, add a comment</h4>;
   }
 
   return (

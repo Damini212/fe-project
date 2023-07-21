@@ -76,32 +76,42 @@ export default function Articles() {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div className="articles">
-          {articles.map((article) => {
-            return (
-              <Link
-                to={`/article/${article.article_id}`}
-                key={article.article_id}
-                className="articles-link"
-              >
-                <div className="article-items">
-                  <h4 className="article-items">{article.title}</h4>
-                  <div className="article-items">Author - {article.author}</div>
-                  <img
-                    src={article.article_img_url}
-                    alt={`cover of the ${article.title} book`}
-                  />
-                  <div className="article-items">Topic - {article.topic}</div>
+        <>
+          {articles.length < 1 ? (
+            <p className="no-topic">
+              There are no articles for topic "{searchParams.get("topic")}"
+            </p>
+          ) : null}
+
+          <div className="articles">
+            {articles.map((article) => {
+              return (
+                <Link
+                  to={`/article/${article.article_id}`}
+                  key={article.article_id}
+                  className="articles-link"
+                >
                   <div className="article-items">
-                    Comment Count - {article.comment_count}
+                    <h4 className="article-items">{article.title}</h4>
+                    <div className="article-items">
+                      Author - {article.author}
+                    </div>
+                    <img
+                      src={article.article_img_url}
+                      alt={`cover of the ${article.title} book`}
+                    />
+                    <div className="article-items">Topic - {article.topic}</div>
+                    <div className="article-items">
+                      Comment Count - {article.comment_count}
+                    </div>
+                    <p>{new Date(article.created_at).toDateString()}</p>
+                    <div className="article-items">Votes - {article.votes}</div>
                   </div>
-                  <p>{new Date(article.created_at).toDateString()}</p>
-                  <div className="article-items">Votes - {article.votes}</div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+                </Link>
+              );
+            })}
+          </div>
+        </>
       )}
     </div>
   );

@@ -76,7 +76,8 @@ img {
   gap: 10px;
   margin: 10px;
 }
-.error-message {
+.error-message,
+.no-topic {
   font-size: 50px;
   color: rgb(186, 100, 100);
 }
