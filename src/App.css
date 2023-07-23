@@ -171,3 +171,12 @@ img {
   height: 100px;
   border-radius: 5px;
 }
+
+@media only screen and (max-width: 600px) {
+  .articles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 16px;
+  }
+}
