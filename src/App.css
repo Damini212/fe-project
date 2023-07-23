@@ -21,7 +21,7 @@ body {
 
 .articles {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   gap: 30px;
   padding: 16px;
 }
@@ -127,7 +127,6 @@ img {
   flex-direction: center;
   align-items: center;
   gap: 10px;
-  /* border: 1px solid #ea8a0b; */
   width: 50%;
   margin-left: 25%;
   padding: 10px;
@@ -172,11 +171,13 @@ img {
   border-radius: 5px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
   .articles {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    padding: 16px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .articles {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
